@@ -8,8 +8,9 @@ new Vue({
     data: {
         drawer: false,
         group: null,
-        optional: true,
+        sizeTab: null,
         activeTab: null,
+        clicksOnTabs: 0,
         items: [
             {
                 title: 'Gartenhaus',
@@ -46,16 +47,6 @@ new Vue({
                             'Gartenhaus > 70 mm',
                         ]
                     },
-                    {
-                        title: 'Gerätehaus',
-                        items: [
-                            'Geräteschrank',
-                            'Brennholzlager',
-                            'Metall Gerätehaus',
-                            'Holz Gerätehaus',
-                            'Lagerschuppen',
-                        ]
-                    }
                 ],
             },
             {
@@ -64,13 +55,13 @@ new Vue({
                 clicked: false,
                 categories: [
                     {
-                        title: 'Alle Gartenhäuser2',
+                        title: 'Alle Gerätehäuser',
                         items: [
                             'Gartenhaus Holz',
                             'Gartenhaus Metall',
-                            'Flachdachhaus',
-                            'Pultdachhaus',
-                            'Blockbohlenhaus',
+                            'Geräteschrank',
+                            'Mährroboterhaus',
+                            'Holzunterstand',
                         ]
                     },
                 ],
@@ -79,6 +70,27 @@ new Vue({
                 title: 'Wellness',
                 avatar: 'fas fa-spa',
                 clicked: false,
+                categories: [
+                    {
+                        title: 'Saunen / Wellness',
+                        items: [
+                            'Elementsauna',
+                            'Massivholzsauna',
+                            'Gartensauna',
+                            '230 Volt Sauna',
+                            'Fasssauna',
+                        ]
+                    },
+                    {
+                        title: 'Outdoorsauna',
+                        items: [
+                            'Saunahaus',
+                            'Gartensauna',
+                            'Fasssauna',
+                            'Sauna Kota',
+                        ]
+                    },
+                ],
             },
             {
                 title: 'Kinderspielgeräte',
@@ -96,6 +108,16 @@ new Vue({
                 clicked: false,
             },
         ],
+    },
+
+    methods: {
+        increaseTabSize: function() {
+            this.sizeTab = null
+        },
+
+        decreaseTabSize: function() {
+            this.sizeTab = 'width: 65px'
+        },
     },
 
     watch: {

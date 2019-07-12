@@ -4,7 +4,7 @@
 
     <div id="app">
         <v-card
-                class="mx-auto hide-overflow"
+                class="mx-auto hide-overflow pr-0"
                 height="700"
         >
 
@@ -19,10 +19,9 @@
                         class="mt-2"
                         color="#7db70d"
                         depressed
-                        small
                         @click.stop="drawer = !drawer"
                 >
-                    <i class="fas fa-bars"></i>
+                    <v-icon right>fas fa-bars</v-icon>
                 </v-btn>
 
                 <v-spacer></v-spacer>
@@ -39,7 +38,7 @@
             <v-navigation-drawer
                 width="90%"
                 v-model="drawer"
-                absolute
+                fixed
             >
                 <v-app-bar
                     class="pt-2"
@@ -50,26 +49,29 @@
                     prominent
                     flat
                 >
-                    <v-btn
-                        color="#7db70d"
-                        depressed
-                        class="pl-0 pb-1 pr-0"
-                        small
-                        @click="optional = true"
+                    <v-icon
+                            large
+                            @click.stop="activeTab = null"
+                            @click="increaseTabSize"
                     >
-                        <i class="fas fa-caret-left"></i>
-                    </v-btn>
+                        fas fa-caret-left
+                    </v-icon>
 
-                    <p>Aktuelle Kathegorie</p>
+                    <v-spacer></v-spacer>
 
-                    <v-btn
-                        icon
-                        large
-                        class="pb-3"
-                        @click.stop="drawer = !drawer"
+                    <div v-if="activeTab !== null">
+                        {{ items[activeTab].title }}
+                    </div>
+
+                    <v-spacer></v-spacer>
+
+                    <v-icon
+                            large
+                            @click="drawer = !drawer"
+                            @click="increaseTabSize"
                     >
-                        <i class="fas fa-times"></i>
-                    </v-btn>
+                        fas fa-times
+                    </v-icon>
                 </v-app-bar>
                 <?php echo $__env->make('navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </v-navigation-drawer>
